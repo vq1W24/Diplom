@@ -1,0 +1,18 @@
+    {% extends 'base.html' %}
+    
+    {% block title %}Новости{% endblock %}
+    
+    {% block content %}
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Новости с сайта ФНС</h2>
+        <ul class="list-group">
+            {% for news in news_list %}
+            <li class="list-group-item">
+                <h5><a href="{{ news.link }}" target="_blank">{{ news.title }}</a></h5>
+                <p>{{ news.summary }}</p>
+                <small>{{ news.published }}</small>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endblock %}
