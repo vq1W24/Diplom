@@ -1,12 +1,75 @@
 {% extends 'base.html' %}
 
+{% block title %}Авторизация | ИП Чумаков{% endblock %}
+
 {% block content %}
-<h1>Авторизация</h1>
+<!-- Hero Section -->
+<section class="bg-primary text-white py-4">
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="h4 mb-0">Авторизация сотрудников</h1>
+            </div>
+        </div>
+    </div>
+</section>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <p ><button type="submit">Войти</button></p>
-</form>
+<!-- Login Form -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    Неверный логин или пароль
+                                </div>
+                            {% endif %}
+                            
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Логин</label>
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="username" 
+                                       name="username" 
+                                       required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Пароль</label>
+                                <input type="password" 
+                                       class="form-control" 
+                                       id="password" 
+                                       name="password" 
+                                       required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100">
+                                Войти
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<style>
+    .card {
+        border-radius: 8px;
+    }
+    .form-control {
+        padding: 10px;
+        border-radius: 4px;
+    }
+    .btn-primary {
+        padding: 10px;
+        font-weight: 500;
+    }
+</style>
 {% endblock %}

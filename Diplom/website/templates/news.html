@@ -1,18 +1,53 @@
-    {% extends 'base.html' %}
-    
-    {% block title %}Новости{% endblock %}
-    
-    {% block content %}
-    <div class="container py-5">
-        <h2 class="text-center mb-4">Новости с сайта ФНС</h2>
-        <ul class="list-group">
-            {% for news in news_list %}
-            <li class="list-group-item">
-                <h5><a href="{{ news.link }}" target="_blank">{{ news.title }}</a></h5>
-                <p>{{ news.summary }}</p>
-                <small>{{ news.published }}</small>
-            </li>
-            {% endfor %}
-        </ul>
+{% extends 'base.html' %}
+
+{% block title %}Новости ФНС - ИП Чумаков{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-primary text-white py-5">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-5 fw-bold mb-3">Новости Федеральной налоговой службы</h1>
+                <p class="lead mb-4">Актуальная информация о изменениях в налоговом законодательстве</p>
+            </div>
+        </div>
     </div>
-    {% endblock %}
+</section>
+
+<!-- News Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Последние новости с сайта ФНС</h2>
+                        
+                        {% if news_list %}
+                            <div class="list-group">
+                                {% for news in news_list %}
+                                <div class="list-group-item mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="mb-0">
+                                            <a href="{{ news.link }}" target="_blank" class="text-decoration-none">{{ news.title }}</a>
+                                        </h5>
+                                        <span class="badge bg-primary">Новость</span>
+                                    </div>
+                                    <p class="mb-2">{{ news.summary }}</p>
+                                    <small class="text-muted">{{ news.published|date:"d.m.Y H:i" }}</small>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info">
+                                На данный момент новости отсутствуют. Пожалуйста, попробуйте позже.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

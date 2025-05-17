@@ -2,10 +2,13 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.db.models import Q
 from django.urls import reverse_lazy
-from django.utils import timezone
 import datetime
 from django.shortcuts import render, get_object_or_404, redirect
-
+import feedparser
+from django.shortcuts import render
+from .models import FNSNews
+from datetime import datetime
+from django.utils.timezone import make_aware
 from .forms import ContactForm, StatusUpdateForm, CreateRequestForm, ContactRequestForm
 from django.core.files.storage import FileSystemStorage
 
@@ -55,9 +58,38 @@ def list(request):
     return render(request, 'list.html')
 
 
-def news(request):
-    return render(request, 'news.html')
+def news (request):
+    news_list = []  # Инициализируем пустой список
 
+    try:
+        # Парсинг RSS ленты ФНС
+        feed = feedparser.parse("https://www.nalog.gov.ru/rss/")
+
+        # Очищаем старые новости и сохраняем новые
+        FNSNews.objects.all().delete()
+
+        for entry in feed.entries:
+            try:
+                published = make_aware(datetime.strptime(entry.published, '%a, %d %b %Y %H:%M:%S %z'))
+                FNSNews.objects.create(
+                    title=entry.title,
+                    summary=entry.summary,
+                    link=entry.link,
+                    published=published
+                )
+            except (KeyError, ValueError) as e:
+                print(f"Ошибка обработки новости: {e}")
+                continue
+
+        # Получаем все новости из БД
+        news_list = FNSNews.objects.all().order_by('-published')
+
+    except Exception as e:
+        print(f"Ошибка при получении новостей: {e}")
+        # Можно добавить сообщение об ошибке для пользователя
+        news_list = FNSNews.objects.all().order_by('-published') if FNSNews.objects.exists() else []
+
+    return render(request, 'news.html', {'      news_list': news_list})
 
 class ContactRequestListView(ListView):
     model = ContactRequest

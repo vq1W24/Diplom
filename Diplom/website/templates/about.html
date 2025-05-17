@@ -3,10 +3,188 @@
 {% block title %}О нас - ИП Чумаков{% endblock %}
 
 {% block content %}
-<section id="about" class="bg-light py-5">
+<!-- Hero Section -->
+<section class="bg-primary text-white py-5">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-5 fw-bold mb-3">ИП Чумаков - профессиональные бухгалтерские услуги</h1>
+                <p class="lead mb-4">Более 10 лет помогаем бизнесу с бухгалтерией и налогами</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-5">О нас</h2>
-        <p class="text-center">ИП Чумаков — это команда профессионалов с многолетним опытом работы в области бухгалтерского учета. Мы заботимся о ваших финансовых делах, чтобы вы могли сосредоточиться на развитии бизнеса.</p>
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="https://via.placeholder.com/600x400?text=О+компании" alt="О компании ИП Чумаков" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mb-4">Наша история</h2>
+                <p>ИП Чумаков было основано в 2010 году как небольшая бухгалтерская практика. За годы работы мы выросли в команду профессионалов, обслуживающую более 200 клиентов по всей России.</p>
+                <p>Начиная с индивидуальных предпринимателей и малого бизнеса, сегодня мы работаем со средними компаниями различных сфер деятельности, включая торговлю, услуги и производство.</p>
+                <div class="mt-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-light p-3 rounded-circle me-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-award-fill text-primary" viewBox="0 0 16 16">
+                                <path d="M8 0l1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+                                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">10+ лет</h3>
+                            <p class="mb-0">Успешной работы на рынке</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="bg-light p-3 rounded-circle me-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-people-fill text-primary" viewBox="0 0 16 16">
+                                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816C4.82 8.713 4 10.07 4 12c0 1.885.673 2.984 1.216 3.962z"/>
+                                <path fill-rule="evenodd" d="M4.5 8.063a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">200+</h3>
+                            <p class="mb-0">Довольных клиентов</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Team -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Наша команда</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://via.placeholder.com/300x300?text=Основатель" class="card-img-top" alt="Основатель">
+                    <div class="card-body text-center">
+                        <h3 class="h5">Чумаков Иван Петрович</h3>
+                        <p class="text-muted">Основатель, главный бухгалтер</p>
+                        <p>Опыт работы в бухгалтерии - более 15 лет. Специалист по налоговому планированию и оптимизации.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://via.placeholder.com/300x300?text=Бухгалтер" class="card-img-top" alt="Бухгалтер">
+                    <div class="card-body text-center">
+                        <h3 class="h5">Смирнова Елена Владимировна</h3>
+                        <p class="text-muted">Старший бухгалтер</p>
+                        <p>Специализируется на зарплатных проектах и кадровом учете. Опыт работы - 10 лет.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://via.placeholder.com/300x300?text=Налоговый+специалист" class="card-img-top" alt="Налоговый специалист">
+                    <div class="card-body text-center">
+                        <h3 class="h5">Козлов Алексей Дмитриевич</h3>
+                        <p class="text-muted">Налоговый консультант</p>
+                        <p>Эксперт по налоговому праву. Помогает клиентам минимизировать налоговые риски.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Values -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Наши ценности</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-light p-3 rounded-circle d-inline-block mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-shield-check text-primary" viewBox="0 0 16 16">
+                                <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+                                <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                        </div>
+                        <h3>Надежность</h3>
+                        <p>Мы гарантируем точность и своевременность выполнения всех обязательств перед клиентами и государственными органами.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-light p-3 rounded-circle d-inline-block mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-lightbulb text-primary" viewBox="0 0 16 16">
+                                <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+                            </svg>
+                        </div>
+                        <h3>Экспертиза</h3>
+                        <p>Наши специалисты регулярно проходят обучение и следят за изменениями в законодательстве, чтобы предоставлять актуальные решения.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-light p-3 rounded-circle d-inline-block mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart-fill text-primary" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                            </svg>
+                        </div>
+                        <h3>Индивидуальный подход</h3>
+                        <p>Для каждого клиента мы разрабатываем персональные решения с учетом особенностей его бизнеса и финансовых целей.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certificates -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Наши сертификаты</h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm">
+                    <img src="https://via.placeholder.com/300x400?text=Сертификат+1" class="card-img-top" alt="Сертификат 1">
+                    <div class="card-body">
+                        <p class="small text-muted mb-0">Сертификат профессионального бухгалтера</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm">
+                    <img src="https://via.placeholder.com/300x400?text=Сертификат+2" class="card-img-top" alt="Сертификат 2">
+                    <div class="card-body">
+                        <p class="small text-muted mb-0">Сертификат налогового консультанта</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm">
+                    <img src="https://via.placeholder.com/300x400?text=Сертификат+3" class="card-img-top" alt="Сертификат 3">
+                    <div class="card-body">
+                        <p class="small text-muted mb-0">Сертификат 1С:Бухгалтерия</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-dark text-white py-5">
+    <div class="container text-center py-4">
+        <h2 class="mb-4">Готовы начать сотрудничество?</h2>
+        <p class="lead mb-4">Оставьте заявку и получите бесплатную консультацию по вашим вопросам</p>
+        <a href="{% url 'contact' %}" class="btn btn-light btn-lg px-4">Связаться с нами</a>
     </div>
 </section>
 {% endblock %}

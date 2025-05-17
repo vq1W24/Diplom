@@ -1,8 +1,7 @@
 from django.urls import path
 from . import views
 from .forms import ContactRequestDeleteView
-from .views import ContactRequestListView, UpdateStatus, ContactRequestDetailView, CreateContactRequest, \
-    ContactRequestEditView
+from .views import ContactRequestListView, UpdateStatus, ContactRequestDetailView, CreateContactRequest,ContactRequestEditView
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -19,6 +18,5 @@ urlpatterns = [
 
     path('edit/<int:pk>/', ContactRequestEditView.as_view(), name='contact_request_edit'),     # Редактирование заявки
 
-    path('login/', views.LoginUser.as_view(), name='login'),
 
 ]

@@ -1,71 +1,162 @@
 {% extends 'base.html' %}
 
-{% block title %}Связаться с нами{% endblock %}
+{% block title %}Связаться с нами | ИП Чумаков{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <h2 class="text-center mb-4">Связаться с нами</h2>
-    <form method="post" action="{% url 'contact' %}" enctype="multipart/form-data">
-        {% csrf_token %}
+<!-- Hero Section -->
+<section class="bg-primary text-white py-5">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-5 fw-bold mb-3">Связаться с нами</h1>
+                <p class="lead mb-4">Оставьте заявку и мы свяжемся с вами в ближайшее время</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        <!-- Форма с полями для ввода -->
-        <div class="mb-3">
-            {{ form.full_name.label_tag }}
-            {{ form.full_name }}
-            {% if form.full_name.errors %}
-                <div class="text-danger">
-                    {% for error in form.full_name.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
+<!-- Contact Form Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <form method="post" action="{% url 'contact' %}" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            <!-- Full Name -->
+                            <div class="mb-4">
+                                <label for="{{ form.full_name.id_for_label }}" class="form-label fw-bold">{{ form.full_name.label }}</label>
+                                {{ form.full_name }}
+                                {% if form.full_name.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.full_name.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <!-- Phone & Email Row -->
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="{{ form.phone.id_for_label }}" class="form-label fw-bold">{{ form.phone.label }}</label>
+                                    {{ form.phone }}
+                                    {% if form.phone.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {% for error in form.phone.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">{{ form.email.label }}</label>
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {% for error in form.email.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <!-- Description -->
+                            <div class="mb-4">
+                                <label for="{{ form.description.id_for_label }}" class="form-label fw-bold">{{ form.description.label }}</label>
+                                {{ form.description }}
+                                {% if form.description.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.description.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <!-- File Upload -->
+                            <div class="mb-4">
+                                <label for="file" class="form-label fw-bold">Прикрепить файл</label>
+                                <input type="file" name="file" class="form-control" id="file">
+                                <div class="form-text">Максимальный размер файла: 5MB</div>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg py-3">
+                                    <i class="bi bi-send me-2"></i>Отправить заявку
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            {% endif %}
+            </div>
         </div>
+    </div>
+</section>
 
-        <div class="mb-3">
-            {{ form.phone.label_tag }}
-            {{ form.phone }}
-            {% if form.phone.errors %}
-                <div class="text-danger">
-                    {% for error in form.phone.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
+<!-- Contact Info Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="p-4 rounded-3 bg-white shadow-sm">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                        <i class="bi bi-telephone text-primary fs-3"></i>
+                    </div>
+                    <h3 class="h5">Телефон</h3>
+                    <p class="mb-0"><a href="tel:+79991234567" class="text-decoration-none">+7 (999) 123-45-67</a></p>
                 </div>
-            {% endif %}
-        </div>
-
-        <!-- Добавляем поле для email -->
-        <div class="mb-3">
-            {{ form.email.label_tag }}
-            {{ form.email }}
-            {% if form.email.errors %}
-                <div class="text-danger">
-                    {% for error in form.email.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="p-4 rounded-3 bg-white shadow-sm">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                        <i class="bi bi-envelope text-primary fs-3"></i>
+                    </div>
+                    <h3 class="h5">Email</h3>
+                    <p class="mb-0"><a href="mailto:info@ip-chumakov.ru" class="text-decoration-none">info@ip-chumakov.ru</a></p>
                 </div>
-            {% endif %}
-        </div>
-
-        <div class="mb-3">
-            {{ form.description.label_tag }}
-            {{ form.description }}
-            {% if form.description.errors %}
-                <div class="text-danger">
-                    {% for error in form.description.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="p-4 rounded-3 bg-white shadow-sm">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                        <i class="bi bi-clock text-primary fs-3"></i>
+                    </div>
+                    <h3 class="h5">Часы работы</h3>
+                    <p class="mb-0">Пн-Пт: 9:00 - 18:00</p>
                 </div>
-            {% endif %}
+            </div>
         </div>
+    </div>
+</section>
+{% endblock %}
 
-        <!-- Добавляем поле для загрузки файла -->
-        <div class="mb-3">
-            <label for="file" class="form-label">Выберите файл</label>
-            <input type="file" name="file" class="form-control" id="file">
-        </div>
-
-        <!-- Кнопка отправки -->
-        <button type="submit" class="btn btn-primary">Отправить</button>
-    </form>
-</div>
+{% block extra_css %}
+<style>
+    /* Custom form styling */
+    .form-control, .form-select {
+        border: 1px solid #dee2e6;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+    textarea.form-control {
+        min-height: 120px;
+    }
+    .btn-primary {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+        transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+        border-color: #0a58ca;
+    }
+</style>
 {% endblock %}

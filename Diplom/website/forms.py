@@ -16,6 +16,7 @@ class ContactForm(forms.ModelForm):
             'file': forms.ClearableFileInput(attrs={'class': 'form-control'})
 
         }
+
 class CreateRequestForm(forms.ModelForm):
     class Meta:
         model = ContactRequest
