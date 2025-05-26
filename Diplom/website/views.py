@@ -11,7 +11,7 @@ from datetime import datetime
 from django.utils.timezone import make_aware
 from .forms import ContactForm, StatusUpdateForm, CreateRequestForm, ContactRequestForm
 from django.core.files.storage import FileSystemStorage
-
+from django.utils import timezone  # Используйте timezone из Django
 from .models import ContactRequest
 from .telegram_utilits import send_to_telegram  # Импорт функции для Telegram
 from django.views.generic import ListView, UpdateView, DetailView, CreateView
@@ -31,6 +31,21 @@ def contact(request):
         form = ContactForm(request.POST, request.FILES)
         if form.is_valid():
             contact_request = form.save()
+            if request.method == 'POST':
+                form = ContactForm(request.POST, request.FILES)
+                if form.is_valid():
+                    # Проверяем наличие согласия
+                    if not request.POST.get('pd_agreement'):
+                        return render(request, 'contact.html', {
+                            'form': form,
+                            'error': 'Необходимо дать согласие на обработку персональных данных'
+                        })
+
+                    contact_request = form.save(commit=False)
+                    contact_request.pd_agreement = True  # Сохраняем факт согласия
+                    contact_request.pd_agreement_date = timezone.now()  # Дата согласия
+                    contact_request.save()
+
 
             # Обрабатываем файл, если он есть
             file  = None

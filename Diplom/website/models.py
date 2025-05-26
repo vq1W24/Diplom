@@ -32,6 +32,8 @@ class ContactRequest(models.Model):
         default='new',
         verbose_name='Статус'
     )
+    pd_agreement = models.BooleanField(default=False, verbose_name="Согласие на обработку ПД")
+    pd_agreement_date = models.DateTimeField(null=True, blank=True, verbose_name="Дата согласия")
 
     class Meta:
         verbose_name = "Контактная заявка"

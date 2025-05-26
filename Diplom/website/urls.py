@@ -1,4 +1,6 @@
 from django.urls import path
+from django.views.generic import TemplateView
+
 from . import views
 from .forms import ContactRequestDeleteView
 from .views import ContactRequestListView, UpdateStatus, ContactRequestDetailView, CreateContactRequest,ContactRequestEditView
@@ -18,5 +20,5 @@ urlpatterns = [
 
     path('edit/<int:pk>/', ContactRequestEditView.as_view(), name='contact_request_edit'),     # Редактирование заявки
 
-
+    path('privacy-policy/', TemplateView.as_view(template_name='privacy-policy.html'), name='privacy_policy'),
 ]
