@@ -80,13 +80,14 @@ WSGI_APPLICATION = 'Diplom.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'scumakrs_buh',  # Только имя базы
+        'NAME': 'scumakrs_buh',
         'USER': 'scumakrs',
         'PASSWORD': 'zathir24A',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',  # Добавьте эту строку
         }
     }
 }
