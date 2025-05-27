@@ -81,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'scumakrs_buh',  # Только имя базы
-        'USER': 'vq1W24',
+        'USER': 'scumakrs',
         'PASSWORD': 'zathir24A',
         'HOST': 'localhost',
         'PORT': '3306',
