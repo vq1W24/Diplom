@@ -1,75 +1,57 @@
-{% extends 'base.html' %}
-
-{% block title %}Авторизация | ИП Чумаков{% endblock %}
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}Вход в систему | ИП Чумаков{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<section class="bg-primary text-white py-4">
-    <div class="container py-3">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="h4 mb-0">Авторизация сотрудников</h1>
-            </div>
-        </div>
+<section class="bg-primary text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">Вход в систему</h1>
+        <p class="lead mb-0">Добро пожаловать! Войдите, чтобы управлять заявками</p>
     </div>
 </section>
 
-<!-- Login Form -->
+<!-- Login Form Section -->
 <section class="py-5">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow-sm">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                    <div class="card-header bg-white border-bottom py-4 text-center">
+                        <h4 class="mb-0 fw-semibold">Авторизация</h4>
+                    </div>
                     <div class="card-body p-4">
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-3" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
                         <form method="post">
                             {% csrf_token %}
-                            
-                            {% if form.non_field_errors %}
-                                <div class="alert alert-danger">
-                                    Неверный логин или пароль
-                                </div>
-                            {% endif %}
-                            
                             <div class="mb-3">
-                                <label for="username" class="form-label">Логин</label>
-                                <input type="text" 
-                                       class="form-control" 
-                                       id="username" 
-                                       name="username" 
-                                       required>
+                                <label for="id_username" class="form-label fw-medium">Логин</label>
+                                {{ form.username|add_class:"form-control"|attr:"placeholder:Введите логин" }}
                             </div>
-                            
-                            <div class="mb-4">
-                                <label for="password" class="form-label">Пароль</label>
-                                <input type="password" 
-                                       class="form-control" 
-                                       id="password" 
-                                       name="password" 
-                                       required>
+                            <div class="mb-3">
+                                <label for="id_password" class="form-label fw-medium">Пароль</label>
+                                {{ form.password|add_class:"form-control"|attr:"placeholder:Введите пароль" }}
                             </div>
-                            
-                            <button type="submit" class="btn btn-primary w-100">
-                                Войти
+                            <button type="submit" class="btn btn-primary w-100 py-2 fw-bold mt-3">
+                                <i class="bi bi-box-arrow-in-right me-2"></i> Войти
                             </button>
                         </form>
+                    </div>
+                    <div class="card-footer bg-light border-top text-center py-3">
+                        <small class="text-muted">© 2024 ИП Чумаков. Все права защищены.</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<style>
-    .card {
-        border-radius: 8px;
-    }
-    .form-control {
-        padding: 10px;
-        border-radius: 4px;
-    }
-    .btn-primary {
-        padding: 10px;
-        font-weight: 500;
-    }
-</style>
 {% endblock %}

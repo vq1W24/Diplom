@@ -1,97 +1,62 @@
 import requests
 from django.core.files.storage import default_storage
-
-# Константы для Telegram API
-BOT_TOKEN = "7207281498:AAGY3cNi4wkNfgIFtRL2Gmp5K7bA2K_u5UI"
-CHAT_ID = "844551631"
-
 def send_to_telegram(full_name, phone, description, file=None):
-    """
-    Отправляет данные заявки в Telegram с возможностью прикрепления файла.
-    
-    Args:
-        full_name (str): ФИО клиента
-        phone (str): Телефон клиента
-        description (str): Описание заявки
-        file (File, optional): Файл для отправки. Defaults to None.
-    
-    Returns:
-        bool: True если отправка успешна, False при ошибке
-    """
-    # Проверка токена
-    if not BOT_TOKEN:
-        print("Ошибка: токен бота отсутствует или неверный.")
-        return False
+    bot_token = "7207281498:AAGY3cNi4wkNfgIFtRL2Gmp5K7bA2K_u5UI"  # Убедись, что токен корректен
+    chat_id = "844551631"  # Убедись, что это правильный ID чата
 
-    # Формирование сообщения
+    # Проверка токена
+    if not bot_token:
+        print("Ошибка: токен бота отсутствует или неверный.")
+        return
+
+    # Основное сообщение
     message = (
         f"Новая заявка на обратную связь:\n"
         f"ФИО: {full_name}\n"
         f"Телефон: {phone}\n"
-        f"Описание: {description}"
+        f"Описание: {description}\n"
     )
 
     # Отправка текстового сообщения
-    text_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    try:
-        text_response = requests.post(
-            text_url,
-            data={"chat_id": CHAT_ID, "text": message},
-            timeout=10
-        )
-        
-        if text_response.status_code != 200:
-            print(f"Ошибка при отправке сообщения: {text_response.text}")
-            return False
-            
-    except requests.exceptions.RequestException as e:
-        print(f"Ошибка соединения: {e}")
-        return False
+    url_message = f"https://api.telegram.org/bot7207281498:AAGY3cNi4wkNfgIFtRL2Gmp5K7bA2K_u5UI/sendMessage"
+    response_message = requests.post(url_message, data={"chat_id": chat_id, "text": message})
 
-    # Отправка файла, если он есть
+    # Проверяем успешность отправки сообщения
+    if response_message.status_code == 200:
+        print("Текстовое сообщение успешно отправлено в Telegram.")
+    else:
+        print(f"Ошибка при отправке текстового сообщения: {response_message.text}")
+
+    # Если есть файл, отправляем его
     if file:
         try:
-            # Проверка размера файла
+            # Убедимся, что файл не пустой
             if file.size == 0:
                 print("Ошибка: переданный файл пустой.")
-                return False
+                return
 
-            # Подготовка файла
+            # URL для отправки файла
+            url_file = f"https://api.telegram.org/bot 7207281498:AAGY3cNi4wkNfgIFtRL2Gmp5K7bA2K_u5UI/sendDocument"
+
+            # Читаем файл из объекта InMemoryUploadedFile
             file_data = {"document": (file.name, file.read())}
-            file_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendDocument"
-            
-            file_response = requests.post(
-                file_url,
-                data={"chat_id": CHAT_ID},
-                files=file_data,
-                timeout=30
-            )
+            response_file = requests.post(url_file, data={"chat_id": chat_id}, files=file_data)
 
-            if file_response.status_code != 200:
-                print(f"Ошибка при отправке файла: {file_response.text}")
-                return False
-                
+            # Проверяем успешность отправки файла
+            if response_file.status_code == 200:
+                print("Файл успешно отправлен в Telegram.")
+            else:
+                print(f"Ошибка при отправке файла: {response_file.text}")
+
         except Exception as e:
             print(f"Ошибка при работе с файлом: {e}")
-            return False
 
-    return True
-
-
-def send_file_from_url_to_telegram(full_name, phone, description, file_url=None):
+def send_to_telegram(full_name, phone, description, file_url=None):
     """
-    Отправляет данные заявки в Telegram с файлом по URL.
-    
-    Args:
-        full_name (str): ФИО клиента
-        phone (str): Телефон клиента
-        description (str): Описание заявки
-        file_url (str, optional): URL файла. Defaults to None.
-    
-    Returns:
-        bool: True если отправка успешна, False при ошибке
+    Отправляет данные заявки в Telegram.
+    Если есть URL файла, отправляет его как документ.
     """
-    # Формирование сообщения
+    # Формируем текстовое сообщение
     message = (
         f"Новая заявка на обратную связь:\n"
         f"ФИО: {full_name}\n"
@@ -99,45 +64,34 @@ def send_file_from_url_to_telegram(full_name, phone, description, file_url=None)
         f"Описание: {description}"
     )
 
-    # Отправка текстового сообщения
-    text_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    try:
-        text_response = requests.post(
-            text_url,
-            data={"chat_id": CHAT_ID, "text": message},
-            timeout=10
-        )
-        
-        if text_response.status_code != 200:
-            print(f"Ошибка при отправке сообщения: {text_response.text}")
-            return False
-            
-    except requests.exceptions.RequestException as e:
-        print(f"Ошибка соединения: {e}")
-        return False
+    # Отправляем текстовое сообщение
+    url_message = f"https://api.telegram.org/bot{"7207281498:AAGY3cNi4wkNfgIFtRL2Gmp5K7bA2K_u5UI"}/sendMessage"
+    data_message = {"chat_id": 844551631, "text": message}
+    response_message = requests.post(url_message, data=data_message)
 
-    # Отправка файла по URL, если он есть
+    if response_message.status_code == 200:
+        print("Сообщение успешно отправлено в Telegram.")
+    else:
+        print(f"Ошибка при отправке сообщения: {response_message.text}")
+
+    # Если есть URL файла, отправляем его
     if file_url:
-        try:
-            # Получаем файл из хранилища
-            file_path = default_storage.path(file_url)
-            with open(file_path, 'rb') as file_obj:
-                file_data = {"document": file_obj}
-                file_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendDocument"
-                
-                file_response = requests.post(
-                    file_url,
-                    data={"chat_id": CHAT_ID},
-                    files=file_data,
-                    timeout=30
-                )
+        # Скачиваем файл из медиасервера
+        file_path = default_storage.path(file_url)
+        with open(file_path, 'rb') as file_obj:
+            send_file_to_telegram(file_obj)
 
-                if file_response.status_code != 200:
-                    print(f"Ошибка при отправке файла: {file_response.text}")
-                    return False
-                    
-        except Exception as e:
-            print(f"Ошибка при работе с файлом: {e}")
-            return False
+def send_file_to_telegram(file):
+    """
+    Отправляет файл в Telegram.
+    """
+    url_file = f"https://api.telegram.org/bot{7207281498:AAGY3cNi4wkNfgIFtRL2Gmp5K7bA2K_u5UI}/sendDocument"
+    files = {'document': file}  # Файл для отправки
+    data = {"chat_id": 844551631}
 
-    return True
+    response_file = requests.post(url_file, data=data, files=files)
+
+    if response_file.status_code == 200:
+        print("Файл успешно отправлен в Telegram.")
+    else:
+        print(f"Ошибка при отправке файла: {response_file.text}")

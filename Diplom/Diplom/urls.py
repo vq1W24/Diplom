@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.views.generic import TemplateView
 
 from website import views
 from website.forms import ContactRequestDeleteView
@@ -33,16 +34,14 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('list/', ContactRequestListView.as_view(), name='contact_request_list'),  # Имя маршрута 'contact_request_list'
     path('update/<int:pk>/', UpdateStatus.as_view(), name='contact_request_update'),
-    # Имя маршрута 'contact_request_update'
     path('create/', CreateContactRequest.as_view(), name='contact_request_create'),  # Новый маршрут для создания заявки
     path('detail/<int:pk>/', ContactRequestDetailView.as_view(), name='contact_request_detail'),
-    # Удаление заявки
     path('delete/<int:pk>/', ContactRequestDeleteView.as_view(), name='contact_request_delete'),
     path('edit/<int:pk>/', ContactRequestEditView.as_view(), name='contact_request_edit'),  # Редактирование заявки
+    path('privacy-policy/', TemplateView.as_view(template_name='privacy-policy.html'), name='privacy_policy'),
 
     path('accounts/', include('django.contrib.auth.urls')),
 
 ]
-
 
 
