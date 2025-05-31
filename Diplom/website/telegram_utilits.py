@@ -64,9 +64,14 @@ def send_to_telegram(full_name, phone, description, file_url=None):
         f"Описание: {description}"
     )
 
-    # Отправляем текстовое сообщение
-    url_message = f"https://api.telegram.org/bot{"7207281498:AAGY3cNi4wkNfgIFtRL2Gmp5K7bA2K_u5UI"}/sendMessage"
-    data_message = {"chat_id": 844551631, "text": message}
+    # Укажите токен и chat_id здесь
+    bot_token = "7207281498:AAGY3cNi4wkNfgIFtRL2Gmp5K7bA2K_u5UI"
+    chat_id = 844551631
+
+    # URL для отправки сообщения
+    url_message = f"https://api.telegram.org/bot{bot_token}/sendMessage" 
+    data_message = {"chat_id": chat_id, "text": message}
+    
     response_message = requests.post(url_message, data=data_message)
 
     if response_message.status_code == 200:
@@ -76,18 +81,23 @@ def send_to_telegram(full_name, phone, description, file_url=None):
 
     # Если есть URL файла, отправляем его
     if file_url:
-        # Скачиваем файл из медиасервера
-        file_path = default_storage.path(file_url)
-        with open(file_path, 'rb') as file_obj:
-            send_file_to_telegram(file_obj)
+        try:
+            # Скачиваем файл из медиасервера (предположим, что это путь на сервере)
+            file_path = default_storage.path(file_url)
+            
+            with open(file_path, 'rb') as file_obj:
+                send_file_to_telegram(file_obj, bot_token, chat_id)
+        except Exception as e:
+            print(f"Ошибка при работе с файлом: {e}")
 
-def send_file_to_telegram(file):
+
+def send_file_to_telegram(file_obj, bot_token, chat_id):
     """
     Отправляет файл в Telegram.
     """
-    url_file = f"https://api.telegram.org/bot{7207281498:AAGY3cNi4wkNfgIFtRL2Gmp5K7bA2K_u5UI}/sendDocument"
-    files = {'document': file}  # Файл для отправки
-    data = {"chat_id": 844551631}
+    url_file = f"https://api.telegram.org/bot{bot_token}/sendDocument" 
+    files = {'document': file_obj}
+    data = {"chat_id": chat_id}
 
     response_file = requests.post(url_file, data=data, files=files)
 
