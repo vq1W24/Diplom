@@ -33,16 +33,6 @@
 <section class="py-5">
     <div class="container">
 
-        <!-- Messages -->
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            {% endfor %}
-        {% endif %}
-
         <!-- Filters & Actions -->
         {% include "partials/requests_filters.html" with search=search date_from=date_from date_to=date_to %}
 
