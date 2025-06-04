@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Главная - ИП Чумаков{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-primary text-white py-5">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-3">Профессиональные бухгалтерские услуги</h1>
+                <p class="lead mb-4">Полное сопровождение бизнеса с гарантией соблюдения законодательства. Работаем с ИП и ООО всех сфер деятельности.</p>
+                <a href="{% url 'contact' %}" class="btn btn-light btn-lg px-4">Бесплатная консультация</a>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                               <img src="{% static 'image/scott-graham-OQMZwNd3ThU-unsplash.png' %}" alt="Бухгалтерские услуги" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Highlights -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Наши ключевые услуги</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="bg-light p-3 rounded-circle d-inline-block mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-calculator text-primary" viewBox="0 0 16 16">
+                                <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                                <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"/>
+                            </svg>
+                        </div>
+                        <h3>Налоговый учет</h3>
+                        <p>Полное ведение налогового учета, подготовка и сдача отчетности в срок</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="bg-light p-3 rounded-circle d-inline-block mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-currency-exchange text-primary" viewBox="0 0 16 16">
+                                <path d="M0 5a5.002 5.002 0 0 0 4.027 4.905 6.46 6.46 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05c0-.046 0-.093.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.46 3.46 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98c-.003.046-.003.097-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5zm16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0zm-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787H8.25zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674l.077.018z"/>
+                            </svg>
+                        </div>
+                        <h3>Зарплатный проект</h3>
+                        <p>Начисление заработной платы, ведение кадрового учета и расчет налогов</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="bg-light p-3 rounded-circle d-inline-block mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-shield-check text-primary" viewBox="0 0 16 16">
+                                <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+                                <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                        </div>
+                        <h3>Восстановление учета</h3>
+                        <p>Исправление ошибок в бухгалтерском и налоговом учете за прошлые периоды</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'services' %}" class="btn btn-outline-primary">Все услуги</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="https://via.placeholder.com/600x400?text=О+компании" alt="О компании" class="img-fluid rounded">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mb-4">О компании</h2>
+                <p>ИП Чумаков оказывает профессиональные бухгалтерские услуги с 2010 года. За это время мы помогли более 200 клиентам оптимизировать свои финансовые процессы и минимизировать налоговые риски.</p>
+                <p>Наша команда состоит из квалифицированных специалистов с опытом работы в различных сферах бизнеса. Мы постоянно следим за изменениями в законодательстве и используем современные технологии для работы с клиентами.</p>
+                <a href="{% url 'about' %}" class="btn btn-primary mt-3">Подробнее о нас</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- News Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Последние новости</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <span class="badge bg-primary mb-2">Налоги</span>
+                        <h3 class="h5">Изменения в налоговом кодексе с 2024 года</h3>
+                        <p class="small text-muted">15 января 2024</p>
+                        <p>Краткое описание важных изменений в налоговом законодательстве, которые затрагивают малый бизнес.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <a href="#" class="btn btn-sm btn-outline-primary">Читать далее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <span class="badge bg-success mb-2">Отчетность</span>
+                        <h3 class="h5">Новые формы отчетности в ПФР</h3>
+                        <p class="small text-muted">5 января 2024</p>
+                        <p>С 1 квартала 2024 года вводятся обновленные формы отчетности в Пенсионный фонд.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <a href="#" class="btn btn-sm btn-outline-primary">Читать далее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <span class="badge bg-warning text-dark mb-2">Экономика</span>
+                        <h3 class="h5">Поддержка малого бизнеса в 2024 году</h3>
+                        <p class="small text-muted">20 декабря 2023</p>
+                        <p>Обзор новых мер государственной поддержки малого и среднего бизнеса на 2024 год.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <a href="#" class="btn btn-sm btn-outline-primary">Читать далее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'news' %}" class="btn btn-primary">Все новости</a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-dark text-white py-5">
+    <div class="container text-center py-4">
+        <h2 class="mb-4">Готовы передать бухгалтерию в надежные руки?</h2>
+        <p class="lead mb-4">Оставьте заявку и получите бесплатную консультацию по оптимизации вашего учета</p>
+        <a href="{% url 'contact' %}" class="btn btn-light btn-lg px-4">Связаться с нами</a>
+    </div>
+</section>
+
+<!-- Advantages -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-3 text-center">
+                <div class="display-4 text-primary mb-2">13+</div>
+                <p class="fw-bold">Лет опыта</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="display-4 text-primary mb-2">200+</div>
+                <p class="fw-bold">Довольных клиентов</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="display-4 text-primary mb-2">24/7</div>
+                <p class="fw-bold">Поддержка клиентов</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="display-4 text-primary mb-2">100%</div>
+                <p class="fw-bold">Соблюдение сроков</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

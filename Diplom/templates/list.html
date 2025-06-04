@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Список заявок | ИП Чумаков{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-primary text-white py-4 position-relative">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-5 fw-bold mb-3">Управление заявками</h1>
+                <p class="lead mb-0">Панель управления входящими запросами клиентов</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Button -->
+    {% if user.is_authenticated %}
+    <div class="position-absolute top-0 end-0 mt-3 me-4">
+        <form action="{% url 'logout' %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-outline-light">
+                <i class="bi bi-box-arrow-right me-1"></i> Выйти ({{ user.username }})
+            </button>
+        </form>
+    </div>
+    {% endif %}
+</section>
+
+<!-- Main Content -->
+<section class="py-5">
+    <div class="container">
+
+        <!-- Messages -->
+{##}
+
+        <!-- Filters & Actions -->
+        {% include "partials/requests_filters.html" with search=search date_from=date_from date_to=date_to %}
+
+        <!-- Requests Table -->
+        {% if contact_requests %}
+            {% include "partials/requests_table.html" with contact_requests=contact_requests status_choices=status_choices %}
+        {% else %}
+            <div class="alert alert-info text-center">
+                <i class="bi bi-info-circle me-2"></i> Заявок не найдено
+            </div>
+        {% endif %}
+
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+            {% include "partials/pagination.html" with page_obj=page_obj search=search date_from=date_from date_to=date_to %}
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- AJAX Status Update Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.status-select-ajax').on('change', function() {
+        let requestId = $(this).data('request-id');
+        let newStatus = $(this).val();
+
+        $.ajax({
+            url: "{% url 'update_status_ajax' %}",
+            method: "POST",
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            data: {
+                request_id: requestId,
+                status: newStatus
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('<div class="alert alert-success alert-dismissible fixed-top mx-auto w-25" style="top: 20px;" role="alert">' +
+                        'Статус обновлен!' +
+                        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                      '</div>').prependTo('body').delay(3000).fadeOut();
+                } else {
+                    alert("Ошибка: " + response.error);
+                }
+            },
+            error: function() {
+                alert("Произошла ошибка при обновлении статуса.");
+            }
+        });
+    });
+
+    // Toggle details row
+    $('.clickable-row').on('click', function(e) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'SELECT') return;
+        const requestId = $(this).data('id');
+        const detailsRow = $('#details-' + requestId);
+
+        $('.details-row').not(detailsRow).hide();
+        detailsRow.toggle();
+    });
+});
+</script>
+{% endblock %}

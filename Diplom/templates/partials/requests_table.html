@@ -1,0 +1,85 @@
+<div class="card shadow-sm border-0 overflow-hidden">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">№</th>
+                        <th scope="col">ФИО</th>
+                        <th scope="col">Контакты</th>
+                        <th scope="col">Статус</th>
+                        <th scope="col">Дата</th>
+                        <th scope="col" class="text-end">Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in contact_requests %}
+                    <tr class="clickable-row" data-id="{{ request.pk }}">
+                        <td class="fw-semibold">{{ request.request_number }}</td>
+                        <td>{{ request.full_name }}</td>
+                        <td>
+                            <div>{{ request.phone }}</div>
+                            <small class="text-muted">{{ request.email|default:"-" }}</small>
+                        </td>
+                        <td>
+                            <select name="status"
+                                    class="form-select form-select-sm status-select-ajax"
+                                    data-request-id="{{ request.pk }}">
+                                {% for value, display in status_choices %}
+                                    <option value="{{ value }}"
+                                        {% if request.status == value %}selected{% endif %}>
+                                        {{ display }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>{{ request.created_at|date:"d.m.Y H:i" }}</td>
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <a href="{% url 'contact_request_detail' request.pk %}"
+                                   class="btn btn-outline-secondary" title="Просмотр">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="{% url 'contact_request_edit' request.pk %}"
+                                   class="btn btn-outline-secondary" title="Редактировать">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="{% url 'contact_request_delete' request.pk %}"
+                                   class="btn btn-outline-danger" title="Удалить">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="details-{{ request.pk }}" class="details-row" style="display: none;">
+                        <td colspan="6" class="p-0 border-0">
+                            <div class="details-content p-3 bg-light">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h6 class="fw-bold mb-2">Описание:</h6>
+                                        <p>{{ request.description|default:"Не указано"|linebreaks }}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="fw-bold mb-2">Прикрепленный файл:</h6>
+                                        {% if request.file %}
+                                            <a href="{{ request.file.url }}" target="_blank"
+                                               class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-download me-1"></i> Скачать
+                                            </a>
+                                            <small class="d-block mt-1 text-muted">
+                                                {{ request.file.name|cut:"contact_requests/" }}
+                                            </small>
+                                        {% else %}
+                                            <span class="text-muted">Отсутствует</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
