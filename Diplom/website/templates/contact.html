@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block title %}Связаться с нами | ИП Чумаков{% endblock %}
 
 {% block content %}
@@ -15,18 +16,18 @@
 </section>
 
 <!-- Contact Form Section -->
-<section class="py-5 bg-light">
+<section class="py-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                <div class="card shadow-sm border-0">
                     <div class="card-body p-4 p-md-5">
-                        <form method="post" class="needs-validation" novalidate>
+                        <form method="post" action="{% url 'contact' %}" enctype="multipart/form-data" class="needs-validation" novalidate>
                             {% csrf_token %}
                             
                             <!-- Full Name -->
                             <div class="mb-4">
-                                <label for="{{ form.full_name.id_for_label }}" class="form-label fw-medium">{{ form.full_name.label }}</label>
+                                <label for="{{ form.full_name.id_for_label }}" class="form-label fw-bold">{{ form.full_name.label }}</label>
                                 {{ form.full_name }}
                                 {% if form.full_name.errors %}
                                     <div class="invalid-feedback d-block">
@@ -36,11 +37,11 @@
                                     </div>
                                 {% endif %}
                             </div>
-
-                            <!-- Phone & Email -->
-                            <div class="row g-3">
+                            
+                            <!-- Phone & Email Row -->
+                            <div class="row">
                                 <div class="col-md-6 mb-4">
-                                    <label for="{{ form.phone.id_for_label }}" class="form-label fw-medium">{{ form.phone.label }}</label>
+                                    <label for="{{ form.phone.id_for_label }}" class="form-label fw-bold">{{ form.phone.label }}</label>
                                     {{ form.phone }}
                                     {% if form.phone.errors %}
                                         <div class="invalid-feedback d-block">
@@ -51,7 +52,7 @@
                                     {% endif %}
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="{{ form.email.id_for_label }}" class="form-label fw-medium">{{ form.email.label }}</label>
+                                    <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">{{ form.email.label }}</label>
                                     {{ form.email }}
                                     {% if form.email.errors %}
                                         <div class="invalid-feedback d-block">
@@ -62,10 +63,10 @@
                                     {% endif %}
                                 </div>
                             </div>
-
+                            
                             <!-- Description -->
                             <div class="mb-4">
-                                <label for="{{ form.description.id_for_label }}" class="form-label fw-medium">{{ form.description.label }}</label>
+                                <label for="{{ form.description.id_for_label }}" class="form-label fw-bold">{{ form.description.label }}</label>
                                 {{ form.description }}
                                 {% if form.description.errors %}
                                     <div class="invalid-feedback d-block">
@@ -75,27 +76,28 @@
                                     </div>
                                 {% endif %}
                             </div>
+                            
+                            <!-- File Upload -->
                             <div class="mb-4">
                                 <label for="file" class="form-label fw-bold">Прикрепить файл</label>
                                 <input type="file" name="file" class="form-control" id="file">
                                 <div class="form-text">Максимальный размер файла: 5MB</div>
                             </div>
-                            <!-- Согласие на обработку ПД -->
-                            <div class="mb-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" required id="pdAgreement" name="pd_agreement">
-                                    <label class="form-check-label" for="pdAgreement">
-                                        Я даю согласие на обработку моих персональных данных в соответствии с 
-                                        <a href="{% url 'privacy_policy' %}" target="_blank">Политикой конфиденциальности</a>.
-                                        Срок хранения данных — 3 года.
-                                    </label>
-                                </div>
-                            </div>
-
+                            <!-- Соглашение об обработке ПД -->
+<div class="mb-4">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" required id="pdAgreement" name="pd_agreement">
+        <label class="form-check-label" for="pdAgreement">
+            Я даю согласие на обработку моих персональных данных в соответствии с 
+            <a href="/privacy-policy/" target="_blank">Политикой конфиденциальности</a>.
+            Срок хранения данных - 3 года.
+        </label>
+    </div>
+</div>
                             <!-- Submit Button -->
-                            <div class="d-grid">
+                            <di v class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg py-3">
-                                    <i class="bi bi-send me-2"></i> Отправить заявку
+                                    <i class="bi bi-send me-2"></i>Отправить заявку
                                 </button>
                             </div>
                         </form>
@@ -109,7 +111,7 @@
 <!-- Contact Info Section -->
 <section class="bg-light py-5">
     <div class="container">
-        <div class="row g-4 justify-content-center text-center text-md-start">
+        <div class="row g-4">
             <div class="col-md-4 text-center">
                 <div class="p-4 rounded-3 bg-white shadow-sm">
                     <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
@@ -134,7 +136,7 @@
                         <i class="bi bi-clock text-primary fs-3"></i>
                     </div>
                     <h3 class="h5">Часы работы</h3>
-                    <p class="mb-0">Пн-Пт: 9:00 - 18:00<br>Сб-Вс: выходной</p>
+                    <p class="mb-0">Пн-Пт: 9:00 - 18:00</p>
                 </div>
             </div>
         </div>
@@ -144,14 +146,15 @@
 
 {% block extra_css %}
 <style>
+    /* Custom form styling */
     .form-control, .form-select {
+        border: 1px solid #dee2e6;
         padding: 0.75rem 1rem;
-        font-size: 1rem;
         border-radius: 0.5rem;
     }
     .form-control:focus, .form-select:focus {
         border-color: #0d6efd;
-        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
     }
     textarea.form-control {
         min-height: 120px;
@@ -166,23 +169,4 @@
         border-color: #0a58ca;
     }
 </style>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    // Валидация формы
-    (() => {
-        'use strict';
-        const forms = document.querySelectorAll('.needs-validation');
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    })();
-</script>
 {% endblock %}

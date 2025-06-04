@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Главная - ИП Чумаков{% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
                 <a href="{% url 'contact' %}" class="btn btn-light btn-lg px-4">Бесплатная консультация</a>
             </div>
             <div class="col-lg-6 d-none d-lg-block">
-                <img src="https://via.placeholder.com/600x400?text=Бухгалтерские+услуги" alt="Бухгалтерские услуги" class="img-fluid rounded">
+                               <img src="{% static 'image/scott-graham-OQMZwNd3ThU-unsplash.png' %}" alt="Бухгалтерские услуги" class="img-fluid rounded">
             </div>
         </div>
     </div>
