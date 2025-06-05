@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-cs#rwpn$()uvnytru&_6%-x$2_5%5r1-k_306fmb)2oh!gfssi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['buhgalterrnd.ru','www.buhgalterrnd.ru','217.114.7.82']
 
 
 CSRF_TRUSTED_ORIGINS = ['https://scumakrs.beget.tech',  'https://www.scumakrs.beget.tech']
